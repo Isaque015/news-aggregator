@@ -1,0 +1,17 @@
+version: '3.6'
+
+services:
+  app:
+    command: gunicorn -c gunicorn.ini runserver:app
+    environment:
+     - RUN_GUNICORN=True
+
+  web_server:
+    build: ./nginx
+    ports:  
+      - 8080:8080
+      - 80:80
+    depends_on:
+      - app
+    networks: 
+      - back

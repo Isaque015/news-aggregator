@@ -1,0 +1,36 @@
+version: '3.6'
+
+services:
+    
+  psql:
+    image: postgres
+    environment:
+      - POSTGRES_DB=bottle
+      - POSTGRES_USER=bottle
+      - POSTGRES_PASSWORD=bottle
+      - TZ=GMT
+    volumes:
+      - "./data/postgres:/var/lib/postgresql/data"
+    ports:
+      - 5433:5432
+    depends_on:
+      - app
+    networks: 
+      - my_network
+
+    
+  app:
+    build:
+      context: .
+    volumes:
+      - ".:/app"
+    networks: 
+      - my_network
+      - back
+
+
+networks: 
+  my_network:
+    driver: bridge
+  back:
+    driver: bridge

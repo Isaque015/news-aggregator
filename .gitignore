@@ -1,0 +1,11 @@
+#python
+*.log
+__pycache__/
+*/__pycache__/
+
+#vscode
+.vscode
+
+#postgres
+/nginx/ssl
+data
