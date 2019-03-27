@@ -1,3 +1,5 @@
+from re import match as re_match
+
 from sqlalchemy import Column, Integer, String
 from argon2 import PasswordHasher
 
@@ -21,29 +23,41 @@ class User(Base):
                 full_name="{self.name} {self.last_name}",\
                 nickname="{self.nickname}")'
 
-    def generate_password(self, passwd):
-        ph = PasswordHasher()
-        hash = ph.hash(passwd)
-        return hash
+    def encrypting_password(self):
+        password_hash = PasswordHasher()
+        self.passwd = password_hash.hash(self.passwd)
+        return
+
+    def normalize_email(self):
+        result_match_email = re_match(
+            r'^([\w\.\-]+)@([\w]+)(\.)(\w*)((\.(\w*))?)$', self.email
+        )
+
+        if result_match_email:
+            return {'status': True, 'msg': 'Email is valid'}
+
+        if '@' not in self.email:
+            return {'status': False, 'msg': 'not @ in email'}
+
+        nick, domain_name = self.email.split('@')
+
+        if not domain_name:
+            return {'status': False, 'msg': 'not domain name'}
+
+        if '.' not in domain_name:
+            return {'status': False, 'msg': 'not "." in domain name'}
+        return {'status': False, 'msg': 'invalid E-mail'}
 
     def set_attributes(self, **fields):
-
-        if not fields.get('passwd'):
-            raise AttributeError('password not found')
-
-        if not fields.get('email'):
-            raise AttributeError('password not found')
-
-        self.passwd = self.generate_password(fields.get('passwd'))
-
         for attribute, value in fields.items():
-            if attribute == 'passwd':
-                continue
-
             setattr(self, attribute, value)
 
-    def save(self, **fields):
-        self.set_attributes(self, **fields)
+    def save(self):
+
+        self.encrypting_password()
+
+        if not self.normalize_email()['status']:
+            return self.normalize_email()['msg']
 
         session.add(self)
         session.commit()
