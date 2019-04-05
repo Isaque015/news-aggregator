@@ -1,12 +1,15 @@
-import bottle
-
 from app import app
+from app.settings.database_settings import sqlalchemy_plugin
+
+from app.settings import default_config
+
+app.install(sqlalchemy_plugin)
+APP_GUNICORN = app
 
 if __name__ == '__main__':
-    try:
-        from os import environ
-
-        if environ['RUN_GUNICORN']:
-            app_gunicorn = bottle.default_app()
-    except KeyError:
-        app.run(host='0.0.0.0', port=8080)
+    app.run(
+        host=default_config['host'],
+        port=default_config['port'],
+        debug=default_config['debug'],
+        reloader=default_config['reloader']
+    )

@@ -1,8 +1,10 @@
 version: '3.6'
 
 services:
-    
+
   app:
     command: python runserver.py
+    environment:
+        - BOTTLE_ENVIRON=dev
     ports:
       - 8080:8080

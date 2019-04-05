@@ -2,6 +2,9 @@
 *.log
 __pycache__/
 */__pycache__/
+.coverage
+htmlcov/
+leia_teste.txt
 
 #vscode
 .vscode
