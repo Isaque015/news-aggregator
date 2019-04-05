@@ -2,16 +2,16 @@ version: '3.6'
 
 services:
   app:
-    command: gunicorn -c gunicorn.ini runserver:app
+    command: gunicorn -c gunicorn.ini runserver:APP_GUNICORN
     environment:
-     - RUN_GUNICORN=True
+        - BOTTLE_ENVIRON=prod
 
   web_server:
     build: ./nginx
-    ports:  
+    ports:
       - 8080:8080
       - 80:80
     depends_on:
       - app
-    networks: 
+    networks:
       - back

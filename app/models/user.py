@@ -3,8 +3,8 @@ from sqlalchemy import (Column, Integer, String, PrimaryKeyConstraint,
 
 from argon2 import PasswordHasher
 
-from app.settings.engine_database import Base, engine
-from app.settings.session_sql import session
+from app.models import Base
+from app.settings.database_settings import session
 from app.utils.email import tratar_email
 from app.utils.get_errors_exceptions import GetErrorException
 
@@ -75,6 +75,3 @@ class User(Base):
             return {'status': False, 'msg': msg}
         finally:
             session.close()
-
-
-Base.metadata.create_all(engine)

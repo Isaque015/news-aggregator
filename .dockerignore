@@ -3,3 +3,6 @@ Dockerfile
 .gitignore
 .vscode
 docker*
+.coverage
+htmlcov/
+leia_teste.txt
