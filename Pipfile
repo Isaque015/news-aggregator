@@ -43,6 +43,8 @@ argon2-cffi = "*"
 bottle-sqlalchemy = "*"
 alembic = "*"
 psycopg2 = "*"
+sqlalchemy-filters = "*"
+invoke = "*"
 
 [requires]
 python_version = "3.7"
