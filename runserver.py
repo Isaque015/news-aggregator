@@ -1,6 +1,5 @@
 from app import app
 from app.settings.database_settings import sqlalchemy_plugin
-
 from app.settings import default_config
 
 app.install(sqlalchemy_plugin)

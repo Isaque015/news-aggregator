@@ -1,23 +1,24 @@
-from sqlalchemy import (Column, Integer, String, PrimaryKeyConstraint,
+from argon2 import PasswordHasher
+from sqlalchemy import (Column, Integer, PrimaryKeyConstraint, String,
                         UniqueConstraint)
 
-from argon2 import PasswordHasher
 
+from app.models.base_model import BaseModel
 from app.models import Base
 from app.settings.database_settings import session
 from app.utils.email import tratar_email
-from app.utils.get_errors_exceptions import GetErrorException
+from app.settings.setup_log import logger
 
 
-class User(Base):
+class User(Base, BaseModel):
 
-    __tablename__ = 'users'
+    __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
-    last_name = Column(String(80), nullable=False)
-    email = Column(String(160), nullable=False, unique=True)
-    nickname = Column(String(80), nullable=False, unique=True)
+    last_name = Column(String(80))
+    email = Column(String(160), nullable=False)
+    nickname = Column(String(80), nullable=False)
     passwd = Column(String(160), nullable=False)
 
     __table_args__ = (
@@ -31,7 +32,7 @@ class User(Base):
 
     def encrypting_password(self):
         if not self.passwd:
-            return {'status': False, 'msg': 'senha esta vazia'}
+            return {'status': False, 'msg': 'passwd not allow blank'}
 
         password_hash = PasswordHasher()
         self.passwd = password_hash.hash(self.passwd)
@@ -49,29 +50,30 @@ class User(Base):
     def normalize_email(self, resposta_email_decorator=None):
         return resposta_email_decorator
 
-    def set_attributes(self, **fields):
-        for attribute, value in fields.items():
-            if value:
-                setattr(self, attribute, value)
-
     def save(self):
-
-        result_encrypting_passwd = self.encrypting_password()
-        if not result_encrypting_passwd['status']:
-            return result_encrypting_passwd
-
-        result_normalize_email = self.normalize_email()
-        if not result_normalize_email['status']:
-            return result_normalize_email['msg']
-
         try:
-            session.add(self)
-            session.commit()
-            return {'status': True, 'msg': 'user save success'}
+            result_do_not_let_save_empty = self.__do_not_let_save_empty__()
+            if not result_do_not_let_save_empty['status']:
+                return result_do_not_let_save_empty
+
+            result_verify_attr_exists = self.__verify_attr_exists__()
+            if not result_verify_attr_exists['status']:
+                return result_verify_attr_exists
+
+            result_encrypting_passwd = self.encrypting_password()
+            if not result_encrypting_passwd['status']:
+                return result_encrypting_passwd
+
+            result_normalize_email = self.normalize_email()
+            if not result_normalize_email['status']:
+                return result_normalize_email
+
+                session.add(self)
+                session.commit()
+                return {'status': True, 'msg': 'user save success'}
+
         except Exception as e:
-            erro = str(e.__dict__['orig'])
-            get_errors = GetErrorException()
-            msg = get_errors.despacho_func(erro)
-            return {'status': False, 'msg': msg}
+            logger.error(e)
+            return {'status': False, 'msg': 'Could not save user'}
         finally:
             session.close()
