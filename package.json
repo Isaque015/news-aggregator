@@ -1,0 +1,11 @@
+{
+  "name": "bottle_project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git+ssh://git@github.com/isaque015/news-aggregator.git",
+  "author": "isaque015 <isquefer@tutanota.com>",
+  "license": "MIT",
+  "dependencies": {
+    "materialize-css": "^1.0.0"
+  }
+}

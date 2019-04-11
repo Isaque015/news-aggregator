@@ -45,6 +45,7 @@ alembic = "*"
 psycopg2 = "*"
 sqlalchemy-filters = "*"
 invoke = "*"
+boddle = "*"
 
 [requires]
 python_version = "3.7"

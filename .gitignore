@@ -4,6 +4,7 @@ __pycache__/
 */__pycache__/
 .coverage
 htmlcov/
+app/test/migration/database.db
 leia_teste.txt
 
 #vscode
@@ -12,3 +13,6 @@ leia_teste.txt
 #postgres
 /nginx/ssl
 data
+
+*yarn
+app/node_modules
