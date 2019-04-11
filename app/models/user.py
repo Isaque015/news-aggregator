@@ -68,9 +68,9 @@ class User(Base, BaseModel):
             if not result_normalize_email['status']:
                 return result_normalize_email
 
-                session.add(self)
-                session.commit()
-                return {'status': True, 'msg': 'user save success'}
+            session.add(self)
+            session.commit()
+            return {'status': True, 'msg': 'user save success'}
 
         except Exception as e:
             logger.error(e)

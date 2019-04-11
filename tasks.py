@@ -16,4 +16,5 @@ def run_coverage_test(c):
         c.run('alembic -n dev revision --autogenerate -m "migrate by invoke"')
 
     c.run('alembic -n dev upgrade head')
-    c.run('coverage run --source=app -m unittest discover -s app/test/ -v')
+    c.run('coverage run --source=app -m unittest discover -s app/test/test_controllers/ -v')
+    # c.run('coverage run --source=app -m unittest discover app/test/ -v')

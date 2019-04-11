@@ -4,6 +4,7 @@ app = Bottle()
 
 # controllers
 from app.controllers import login
+from app.controllers import errors
 
 # models
 from app.models import user
