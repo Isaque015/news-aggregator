@@ -17,6 +17,8 @@ pycodestyle = "*"
 autopep8 = "*"
 pylama = "*"
 pylint = "*"
+behave = "*"
+requests = "*"
 
 [packages]
 backcall = "==0.1.0"
@@ -46,6 +48,9 @@ psycopg2 = "*"
 sqlalchemy-filters = "*"
 invoke = "*"
 boddle = "*"
+wtforms = "*"
+wtforms-sqlalchemy = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,0 +1,64 @@
+{% extends 'base.html.j2' %}
+
+{% block import_css %}
+    <link rel="stylesheet" href="/static_css/login/login.css">
+{% endblock %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock %}
+
+{% block content %}
+<section class="general login-screen">
+
+    <div class="login-form">
+
+        <div class="title">
+            <h3>Entrar</h3>
+        </div>
+
+        <div class="search-engine">
+
+        </div>
+
+        <form method="post" action="" class="form">
+
+            <div class="input-fields">
+
+                <div class="input-nickname">
+                    <label for="nickname">Nickname</label><br>
+                    <div class="nickname">
+                        <i class="fas fa-user-circle"></i>
+                        <input type="text" name="nickname" maxlength="160"
+                               required
+                        >
+                    </div>
+                </div>
+
+                <div class="input-password">
+                    <label for="password">Password</label><br>
+                    <div class="nickname">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" maxlength="160"
+                               required
+                        >
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="button-submit">
+                <button class="btn waves-effect blue darken-4"
+                        type="submit"
+                        name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+</section>
+{% endblock %}

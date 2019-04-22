@@ -19,7 +19,7 @@ class User(Base, BaseModel):
     last_name = Column(String(80))
     email = Column(String(160), nullable=False)
     nickname = Column(String(80), nullable=False)
-    passwd = Column(String(160), nullable=False)
+    password = Column(String(160), nullable=False)
 
     __table_args__ = (
         PrimaryKeyConstraint('id', name='pk_user_id'),
@@ -31,17 +31,17 @@ class User(Base, BaseModel):
         return f'{self.nickname}'
 
     def encrypting_password(self):
-        if not self.passwd:
-            return {'status': False, 'msg': 'passwd not allow blank'}
+        if not self.password:
+            return {'status': False, 'msg': 'password not allow blank'}
 
         password_hash = PasswordHasher()
-        self.passwd = password_hash.hash(self.passwd)
+        self.password = password_hash.hash(self.password)
         return {'status': True, 'msg': 'senha encripitada'}
 
-    def verificar_senha(self, passwd):
+    def verificar_senha(self, password):
         ph = PasswordHasher()
         try:
-            ph.verify(self.passwd, passwd)
+            ph.verify(self.password, password)
             return {'status': True, 'msg': 'senha correta'}
         except Exception:
             return {'status': False, 'msg': 'senha incorreta'}

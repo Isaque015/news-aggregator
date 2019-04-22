@@ -16,3 +16,7 @@ from app.settings import setup_log
 
 #utils
 from app.utils import email
+
+
+#Templates
+from app import templates

@@ -6,6 +6,7 @@
   "author": "isaque015 <isquefer@tutanota.com>",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.1",
     "materialize-css": "^1.0.0"
   }
 }
