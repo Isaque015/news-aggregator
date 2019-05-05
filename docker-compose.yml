@@ -1,7 +1,7 @@
 version: '3.6'
 
 services:
-    
+
   psql:
     image: postgres
     environment:
@@ -15,21 +15,28 @@ services:
       - 5433:5432
     depends_on:
       - app
-    networks: 
+    networks:
       - my_network
 
-    
+
   app:
     build:
       context: .
     volumes:
       - ".:/app"
-    networks: 
+    networks:
       - my_network
       - back
 
+  redis:
+      image: redis
+      container_name: cache
+      ports:
+        - '6379:6379'
+      networks:
+        - my_network
 
-networks: 
+networks:
   my_network:
     driver: bridge
   back:

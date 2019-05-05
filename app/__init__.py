@@ -13,6 +13,11 @@ from app.models import base_model
 # settings
 from app.settings import database_settings
 from app.settings import setup_log
+from app.settings import redis_settings
 
 #utils
 from app.utils import email
+
+
+#Templates
+from app import templates

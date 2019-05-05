@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static_css/reset.css">
+    <link rel="stylesheet" href="/static_css/base.css">
+    <link rel="stylesheet" href="/static_css/layout.css">
+    <!-- <link rel="stylesheet" href="/node_modules_js/materialize-css/dist/css/materialize.min.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/node_modules/toastr/build/toastr.min.css">
+    <link rel="stylesheet" href="/static_css/module.css">
+    {% block import_css %}{% endblock %}
+    {% block title %}{% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+
+    <script type="text/javascript" src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/node_modules/umbrellajs/umbrella.min.js"></script>
+    <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/node_modules/toastr/build/toastr.min.js"></script>
+    <script type="text/javascript" src="/static_js/login.js"></script>
+    {% block import_js %}{% endblock %}
+</body>
+</html>

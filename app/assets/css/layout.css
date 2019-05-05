@@ -1,0 +1,6 @@
+section.general {
+    min-height: 100%;
+
+    /* Todos os itens dentro do flex com tamanho
+    iguais independente do couteudo */
+}

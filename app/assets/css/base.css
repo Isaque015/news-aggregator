@@ -1,0 +1,10 @@
+html, body {
+    height: 100%;
+}
+
+input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+}
