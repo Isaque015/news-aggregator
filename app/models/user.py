@@ -14,7 +14,7 @@ class User(Base, BaseModel):
 
     __tablename__ = 'user'
 
-    id = Column(Integer, primary_key=True)
+    id = Column('id', Integer, primary_key=True)
     name = Column(String(80), nullable=False)
     last_name = Column(String(80))
     email = Column(String(160), nullable=False)

@@ -13,9 +13,9 @@ def stylesheets(filename):
     return static_file(filename, root='app/assets/css')
 
 
-@app.route('/node_modules_js/<filename:path>')
-def node_modules_js(filename):
-    return static_file(filename, root='app/node_modules/')
+@app.route('/static_js/<filename:path>')
+def static_js(filename):
+    return static_file(filename, root='app/assets/js')
 
 
 @app.route('/images/<filename>')

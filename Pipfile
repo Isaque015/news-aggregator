@@ -51,6 +51,12 @@ boddle = "*"
 wtforms = "*"
 wtforms-sqlalchemy = "*"
 requests = "*"
+bottle-session = "*"
+pycrypto = "*"
+bottle-redis = "*"
+redis = "*"
+ipython = "*"
+ipdb = "*"
 
 [requires]
 python_version = "3.7"

@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/static_css/layout.css">
     <!-- <link rel="stylesheet" href="/node_modules_js/materialize-css/dist/css/materialize.min.css"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/node_modules_js/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/node_modules/toastr/build/toastr.min.css">
     <link rel="stylesheet" href="/static_css/module.css">
     {% block import_css %}{% endblock %}
     {% block title %}{% endblock %}
@@ -17,7 +18,11 @@
 <body>
     {% block content %}{% endblock %}
 
-    <script type="text/javascript" src="/node_modules_js/materialize-css/dist/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/node_modules/umbrellajs/umbrella.min.js"></script>
+    <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/node_modules/toastr/build/toastr.min.js"></script>
+    <script type="text/javascript" src="/static_js/login.js"></script>
     {% block import_js %}{% endblock %}
 </body>
 </html>

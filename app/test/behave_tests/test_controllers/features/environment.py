@@ -1,2 +1,2 @@
 def before_all(context):
-    context.base_url = 'localhost:8080'
+    context.base_url = 'http://localhost:8080/sign_in'

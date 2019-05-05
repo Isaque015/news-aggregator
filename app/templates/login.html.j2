@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<section class="general login-screen">
+<section class="general login-screen" id="app">
 
     <div class="login-form">
 
@@ -30,7 +30,7 @@
                     <div class="nickname">
                         <i class="fas fa-user-circle"></i>
                         <input type="text" name="nickname" maxlength="160"
-                               required
+                               id="nickname" v-model="users.nickname" required
                         >
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <div class="nickname">
                         <i class="fas fa-lock"></i>
                         <input type="password" name="password" maxlength="160"
-                               required
+                               id="password" v-model="users.password" required
                         >
                     </div>
                 </div>
